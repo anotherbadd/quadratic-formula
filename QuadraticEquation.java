@@ -27,7 +27,7 @@ package edu.sanjosehighschool.robotics;
 
 
 /*
- This class holds the values a, b, and c of a quadratic equation ax² + bx + c = 0.
+ This class holds the values a, b, and c of a quadratic equation ax^2 + bx + c = 0.
  It's a very simple class, repetitive even, but it should demonstrate the pattern of
  instance variables with getters and setters very clearly. That pattern is all over robot code.
 */
@@ -75,11 +75,11 @@ class Quadratic {
   The Solution class is responsible for computing the solution to a given qudratic equation.
 */
 class Solution {
-    /*   q ± r √ s
+    /*   q ± r * √ s
      *   ---------
      *       t
      */
-    private double q, r, s, t;
+    public double q, r, s, t;
 
     Solution(Quadratic equation){
         double a = equation.getA();
@@ -88,16 +88,16 @@ class Solution {
 
         q = -b;
         r = 1.0;
-        s = b * b - 4 * a *c;
+        s = (b * b) - (4 * a * c);
         t = 2 * a;
     }
 
     double approximation1(){
-        return q + r * Math.sqrt(s) / t;
+        return (q + r * Math.sqrt(s)) / t;
     }
 
     double approximation2(){
-        return q - r * Math.sqrt(s) / t;
+        return (q - r * Math.sqrt(s)) / t;
     }
 }
 
@@ -107,9 +107,12 @@ class Main {
     private static void printSolution(Quadratic equation){
         Solution solution = new Solution(equation);
 
-        System.out.println(equation.getA() + "x² + " + equation.getB() + "x + " + equation.getC() + " = 0");
+        System.out.println("(" + solution.q + " ± " + solution.r + " * sqrt(" + solution.s + "))" + " / " + solution.t);
         System.out.println("x = " + solution.approximation1());
+        // System.out.println("-5x^2 + 2x + 8 = 0" + solution.approximation1());
         System.out.println("x = " + solution.approximation2());
+        // System.out.println("5x^2 + -8x + -2" + solution.approximation2());
+        System.out.println();
     }
 
 
